@@ -1,0 +1,27 @@
+digraph G {
+rankdir=LR;
+arrowsize="0.7";
+bgcolor=white;
+n001 [fontname=Arial, fontsize=10, color=blue, fontcolor=black, shape=oval, label="<http://www.recshop.fake/cd/Hide your heart>"];
+n002 [fontname=Arial, fontsize=10, color=green, fontcolor=black, shape=box, label="<Bonnie Tyler>"];
+n003 [fontname=Arial, fontsize=10, color=green, fontcolor=black, shape=box, label="<UK>"];
+n004 [fontname=Arial, fontsize=10, color=green, fontcolor=black, shape=box, label="<CBS Records>"];
+n005 [fontname=Arial, fontsize=10, color=green, fontcolor=black, shape=box, label="<9.90>"];
+n006 [fontname=Arial, fontsize=10, color=green, fontcolor=black, shape=box, label="<1988>"];
+n007 [fontname=Arial, fontsize=10, color=blue, fontcolor=black, shape=oval, label="<http://www.recshop.fake/cd/Empire Burlesque>"];
+n008 [fontname=Arial, fontsize=10, color=green, fontcolor=black, shape=box, label="<Bob Dylan>"];
+n009 [fontname=Arial, fontsize=10, color=green, fontcolor=black, shape=box, label="<USA>"];
+n010 [fontname=Arial, fontsize=10, color=green, fontcolor=black, shape=box, label="<Columbia>"];
+n011 [fontname=Arial, fontsize=10, color=green, fontcolor=black, shape=box, label="<10.90>"];
+n012 [fontname=Arial, fontsize=10, color=green, fontcolor=black, shape=box, label="<1985>"];
+n001 -> n002  [color=blue, fontcolor=black, fontname=Helvetica, fontsize=10, label="cd:artist"];
+n001 -> n003  [color=blue, fontcolor=black, fontname=Helvetica, fontsize=10, label="cd:country"];
+n001 -> n004  [color=blue, fontcolor=black, fontname=Helvetica, fontsize=10, label="cd:company"];
+n001 -> n005  [color=blue, fontcolor=black, fontname=Helvetica, fontsize=10, label="cd:price"];
+n001 -> n006  [color=blue, fontcolor=black, fontname=Helvetica, fontsize=10, label="cd:year"];
+n007 -> n008  [color=blue, fontcolor=black, fontname=Helvetica, fontsize=10, label="cd:artist"];
+n007 -> n009  [color=blue, fontcolor=black, fontname=Helvetica, fontsize=10, label="cd:country"];
+n007 -> n010  [color=blue, fontcolor=black, fontname=Helvetica, fontsize=10, label="cd:company"];
+n007 -> n011  [color=blue, fontcolor=black, fontname=Helvetica, fontsize=10, label="cd:price"];
+n007 -> n012  [color=blue, fontcolor=black, fontname=Helvetica, fontsize=10, label="cd:year"];
+}
