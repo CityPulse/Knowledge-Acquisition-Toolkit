@@ -14,8 +14,9 @@ class kmeans():
         labels = kmeans.labels_
         #TODO I added the clusterer as return value will not work with GUI
         return labels
+
     def getConfigurationParams(self):
-        return {"clusterSize":2}
+        return {"clusterSize":"2"}
 
 
 

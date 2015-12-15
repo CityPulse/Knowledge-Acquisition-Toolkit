@@ -8,7 +8,8 @@
 # WARNING! All changes made in this file will be lost!
 
 # from PyQt4 import QtCore, QtGui
-from PyQt4 import QtCore, QtGui,Qt
+from PyQt4 import QtCore, QtGui
+from PyQt4 import *
 from view import universalWidget_Reduction, universalWidget_Feature, fileLoader, universalWidget_Abstraction, universalWidget_Preproc, universalWidget_Representation
 
 try:
@@ -36,7 +37,6 @@ class Ui_MainWindow(object):
         self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
         self.tabWidget.setTabsClosable(True) # change 1
 
-
 #        self.tabWidget.addTab(self.tab, _fromUtf8(""))
         self.comboBox = QtGui.QComboBox(self.centralwidget)
         self.comboBox.setGeometry(QtCore.QRect(10, 110, 69, 22))
@@ -44,8 +44,6 @@ class Ui_MainWindow(object):
         import logic.PreprocessingControl as ncf
         pc = ncf.PreProcessingControl()
         for k in pc.getAvailableAlgorithms().keys(): self.comboBox.addItem(k)
-
-
 
         self.comboBox_2 = QtGui.QComboBox(self.centralwidget)
         self.comboBox_2.setGeometry(QtCore.QRect(150, 110, 69, 22))
@@ -126,8 +124,11 @@ class Ui_MainWindow(object):
         self.graphicsView_2 = QtGui.QLabel(self.centralwidget)
         self.graphicsView_2.setGeometry(QtCore.QRect(620, 390, 121, 91))
         self.graphicsView_2.setObjectName(_fromUtf8("graphicsView_2"))
-        p2 = QtGui.QPixmap("../ccsr.jpg");
 
+        self.pushButton = QtGui.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(650, 340, 75, 23))
+        p2 = QtGui.QPixmap("../ccsr.jpg");
+        self.pushButton.setObjectName(_fromUtf8("pushButton"))
 
         self.graphicsView_2.setPixmap(p2.scaled(self.graphicsView_2.size(), QtCore.Qt.KeepAspectRatio))
 
@@ -139,6 +140,8 @@ class Ui_MainWindow(object):
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         MainWindow.setStatusBar(self.statusbar)
+
+        self.pushButton.clicked.connect(self.clear)
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
@@ -160,15 +163,14 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "Feature Extraction", None))
         self.label_6.setText(_translate("MainWindow", "Abstraction", None))
         self.label_7.setText(_translate("MainWindow", "Representation", None))
-        self.label_8.setText(_translate("MainWindow", "University of Surrey 2013", None))
+        self.label_8.setText(_translate("MainWindow", "University of Surrey 2015", None))
+        self.pushButton.setText(_translate("MainWindow", "Restart", None))
         MainWindow.connect(self.comboBox,QtCore.SIGNAL('activated(QString)'),self.loadPreproc)
         MainWindow.connect(self.comboBox_2,QtCore.SIGNAL('activated(QString)'),self.loadReduction)
         MainWindow.connect(self.comboBox_3,QtCore.SIGNAL('activated(QString)'),self.loadFeature)
         MainWindow.connect(self.comboBox_4,QtCore.SIGNAL('activated(QString)'),self.loadAbstraction)
         MainWindow.connect(self.comboBox_5,QtCore.SIGNAL('activated(QString)'),self.loadRepresentation)
         MainWindow.connect(self.tabWidget,QtCore.SIGNAL('tabCloseRequested(int)'),self.closeTab)
-
-
 
     def loadPreproc(self,type):
         print type
@@ -223,12 +225,37 @@ class Ui_MainWindow(object):
     def closeTab(self,i):
         self.tabWidget.removeTab(i)
 
-if __name__ == "__main__":
+    def clear(self):
+        #k = QtGui.QWidget()
+        k=0;
+        while self.tabWidget.count()!=True:
+          self.closeTab(k)
+
+        self.closeTab(0)
+        self.tabWidget.setCurrentIndex(0)
+        fWid = QtGui.QWidget()
+        self.fLoader=fileLoader.Ui_Form()
+        self.fLoader.setupUi(fWid)
+        self.tabWidget.addTab(fWid,_fromUtf8("File Loader"))
+
+
+'''if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
     MainWindow = QtGui.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec_())'''
 
+def main():
+        import sys
+        app = QtGui.QApplication(sys.argv)
+        MainWindow = QtGui.QMainWindow()
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+        sys.exit(app.exec_())
+
+if __name__ == '__main__':
+        main()

@@ -1,4 +1,4 @@
-__author__ = 'frieder'
+__author__ = 'Shirin'
 import pykov
 import pydot
 
@@ -12,12 +12,12 @@ class markov:
         #print P # chain
         return p, P
 
-    def visualizeChain(self,chain,abstraction, filename="c:\ccsr.png"):
+    def visualizeChain(self,chain,abstraction, filename="markov.png"):
         graph = pydot.Dot(graph_type='digraph')
         for i in chain:
             #print i,chain[i]
-            edge = pydot.Edge(abstraction[str(i[0])], abstraction[str(i[1])], label=chain[i])
-
+            #edge = pydot.Edge(abstraction[str(i[0])], abstraction[str(i[1])], label=chain[i])
+            edge = pydot.Edge(str([(i[0])]), str([(i[1])]), label=round(chain[i],2))
             graph.add_edge(edge)
         graph.write_png(filename)
 

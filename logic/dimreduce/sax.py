@@ -1,5 +1,5 @@
 from __future__ import division
-__author__ = 'eris'
+__author__ = 'Eris, Shirin'
 import numpy as np
 from scipy.stats import norm
 import string
@@ -9,18 +9,18 @@ import math
 # paa tranformation, window = incoming data, string_length = length of outcoming data
 
 class sax():
-    def process(self, window, output_length):
-        sax = to_sax(to_paa(normalize(window),output_length),4)
+    def process(self, window, output_length, sax_vocab):
+        sax = to_sax(to_paa(normalize(window),output_length),sax_vocab)
         #return vocabToCoordinates(len(window),output_length,sax[0],4)
-        return vocabToCoordinates(output_length,output_length,sax[0],4)
+        return vocabToCoordinates(output_length,output_length,sax[0],sax_vocab)
 
     def getConfigurationParams(self):
-        return {"output_length":"100"}
+        return {"output_length":"100","sax_vocab":"4"}
 
 def normalize(data):
     data2 = np.array(data)
-    data2 -= (np.mean(data))
-    data2 *= (1.0/data2.std())
+    data2 = data2 - (np.mean(data))
+    data2 = data2 /data2.std()
     return data2
 
 def to_paa(data,string_length):

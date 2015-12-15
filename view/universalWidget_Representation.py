@@ -58,7 +58,7 @@ class Ui_Form(object):
 
         self.label = QtGui.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(10, 10, 521, 211))
-        self.label.setText("bjlashdjklasdjkashddhasdjkhasjkdhasjkdhasjkdhjkashdjkashdjk")
+        self.label.setText("The state figure will be saved")
         self.widget = QtGui.QWidget()
         self.widget.setGeometry(QtCore.QRect(10, 10, 521, 211))
         self.widget.setObjectName(_fromUtf8("widget"))
@@ -94,13 +94,13 @@ class Ui_Form(object):
             item = QtGui.QTableWidgetItem()
             item.setText(str(it))
             self.tableWidget.setItem(c, 0, item)
-            print "jiggaboo time", it
+            #print "jgaboo timeig", it
             #print it, self.drc.getRequiredParameters()[it]
             item = QtGui.QTableWidgetItem()
-            item.setText("Name it!")
+            item.setText("States!")
             self.tableWidget.setItem(c, 1, item)
 
-            print c
+            #print c
             c += 1
 
         self.retranslateUi(Form)
@@ -112,10 +112,9 @@ class Ui_Form(object):
         __sortingEnabled = self.tableWidget.isSortingEnabled()
         self.tableWidget.setSortingEnabled(False)
         self.tableWidget.setSortingEnabled(__sortingEnabled)
-        self.pushButton.setText(_translate("Form", "Markov It!", None))
+        self.pushButton.setText(_translate("Form", "Picture It!", None))
 
         Form.connect(self.pushButton, QtCore.SIGNAL('clicked()'), self.processor)
-        print "jo"
 
     def processor(self):
         print "in process"
@@ -124,8 +123,8 @@ class Ui_Form(object):
             a = self.tableWidget.item(i, 0)
             b = self.tableWidget.item(i, 1)
             params[str(a.text())] = str(b.text())
-        print "paramsjo", params
-        print "paramsjo2", self.dc.params
+        #print "paramsjo", params
+        #print "paramsjo2", self.dc.params
         self.drc.represent(None,{"states":self.dc.params})
 
         #self.label.update()

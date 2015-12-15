@@ -20,5 +20,18 @@ class dft():
         print rfft.shape
         return rfft
 
+    '''def process(self, data, output_length):
+        if len(data.shape)>1:
+            data1=data[:len(data),0]
+        else:
+            data1=data
+        print data1.shape
+        fft = np.fft.fft(data1)
+        print fft.shape
+        fft[output_length:len(fft)]=0
+        rfft = np.fft.ifft(fft)
+        print rfft.shape
+        return rfft'''
+
     def getConfigurationParams(self):
         return {"output_length":"100"}

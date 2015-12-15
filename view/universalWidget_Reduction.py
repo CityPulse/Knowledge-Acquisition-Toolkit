@@ -6,12 +6,14 @@
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
-
+__author__ = 'Shirin'
 from PyQt4 import QtCore, QtGui, Qwt5
 from guiqwt.builder import make
 from guiqwt.plot import CurveDialog, PlotManager
 from logic.DataFlowControl import DataController
 from logic.DimensionalityReduceControl import DimensionalityReduceControl
+import pandas,csv
+import numpy as np
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -41,20 +43,40 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
         Form.resize(536, 384)
+        self.Form=Form
         self.tableWidget = QtGui.QTableWidget(Form)
         self.tableWidget.setGeometry(QtCore.QRect(90, 261, 221, 121))
         self.tableWidget.setObjectName(_fromUtf8("tableWidget"))
         self.tableWidget.setColumnCount(2)
         self.tableWidget.setRowCount(len(self.drc.getRequiredParameters()))
 
+        item = QtGui.QTableWidgetItem()
+        self.tableWidget.setVerticalHeaderItem(0, item)
+        item = QtGui.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(0, item)
+        item = QtGui.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(1, item)
+        item = QtGui.QTableWidgetItem()
+        self.tableWidget.setItem(0, 0, item)
+        item = QtGui.QTableWidgetItem()
+        self.tableWidget.setItem(0, 1, item)
+
         self.pushButton = QtGui.QPushButton(Form)
-        self.pushButton.setGeometry(QtCore.QRect(0, 360, 75, 23))
+        self.pushButton.setGeometry(QtCore.QRect(0, 300, 75, 23))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
 
         self.widget = QtGui.QWidget(Form)
         self.widget.setGeometry(QtCore.QRect(10, 10, 521, 211))
         self.widget.setObjectName(_fromUtf8("widget"))
 
+        self.pushButton_3 = QtGui.QPushButton(Form)
+        self.pushButton_3.setGeometry(QtCore.QRect(0, 360, 75, 23))
+        self.pushButton_3.setObjectName(_fromUtf8("pushButton_3"))
+
+        #self.pushButton_2 = QtGui.QPushButton(Form)
+        #self.pushButton_2.setGeometry(QtCore.QRect(0, 330, 75, 23))
+        #self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         self.dialog = CurveDialog(edit=False, toolbar=False, parent=self.widget)
         self.plot = self.dialog.get_plot()
         self.plot.set_antialiasing(True)
@@ -108,6 +130,9 @@ class Ui_Form(object):
         self.pushButton.setText(_translate("Form", "Process", None))
         Form.connect(self.pushButton, QtCore.SIGNAL('clicked()'), self.process)
 
+        self.pushButton_3.setText(_translate("Form", "Save", None))
+        Form.connect(self.pushButton_3, QtCore.SIGNAL('clicked()'),self.saveDialog)
+
     def process(self):
         params = {}
         for i in range(self.tableWidget.rowCount()):
@@ -131,3 +156,22 @@ class Ui_Form(object):
         self.plot.replot()
         #self.dc.setCurrentDataFlowObject(data)
         self.dc.dimrecprocData = data
+        self.currentdata = np.reshape(data, (-1, 1))
+
+    def saveDialog(self):
+        path = QtGui.QFileDialog.getSaveFileName(self.Form, 'Save File', '', 'CSV(*.csv)')
+        if not path.isEmpty():
+            with open(unicode(path), 'wb') as stream:
+                writer = csv.writer(stream)
+                [a,b]=self.currentdata.shape
+                print(a)
+                print(b)
+                for row in range(a):
+                    rowdata = []
+                    for column in range(b):
+                        item = self.currentdata.item(row, column)
+                        if item is not None:
+                            rowdata.append(item)
+                        else:
+                            rowdata.append('')
+                    writer.writerow(rowdata)

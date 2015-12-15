@@ -13,4 +13,4 @@ class std():
         return result
 
     def getConfigurationParams(self):
-        return {"window_length":"100"}
+        return {"Output_length":"100"}

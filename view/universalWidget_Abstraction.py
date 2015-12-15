@@ -14,6 +14,7 @@ from logic.AbstractionControl import AbstractionControl
 from logic.DataFlowControl import DataController
 from logic.DimensionalityReduceControl import DimensionalityReduceControl
 import os
+import pandas,csv
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -43,6 +44,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
         Form.resize(536, 384)
+        self.Form=Form
         self.tableWidget = QtGui.QTableWidget(Form)
         self.tableWidget.setGeometry(QtCore.QRect(90, 261, 221, 121))
         if self.dc.getCurrentLabels() is None:
@@ -52,8 +54,19 @@ class Ui_Form(object):
         self.tableWidget.setColumnCount(2)
         self.tableWidget.setRowCount(len(list(set(self.dc.getCurrentLabels()))))
 
+        item = QtGui.QTableWidgetItem()
+        self.tableWidget.setVerticalHeaderItem(0, item)
+        item = QtGui.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(0, item)
+        item = QtGui.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(1, item)
+        item = QtGui.QTableWidgetItem()
+        self.tableWidget.setItem(0, 0, item)
+        item = QtGui.QTableWidgetItem()
+        self.tableWidget.setItem(0, 1, item)
+
         self.pushButton = QtGui.QPushButton(Form)
-        self.pushButton.setGeometry(QtCore.QRect(0, 360, 75, 23))
+        self.pushButton.setGeometry(QtCore.QRect(0, 300, 75, 23))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
 
         self.label = QtGui.QLabel(Form)
@@ -128,11 +141,10 @@ class Ui_Form(object):
         p,P = markov().abstract(self.dc.getCurrentLabels(),params)
         self.dc.params = params
         print os.getcwd()
-        p2 = QtGui.QPixmap("c:\ccsr.png");
+        p2 = QtGui.QPixmap("markov.png");
         print p2.width(), p2
         self.label.setPixmap(p2.scaled(self.label.size(), QtCore.Qt.KeepAspectRatio))
         self.dc.abstractionData = (p,P)
         #self.label.update()
-
 
 

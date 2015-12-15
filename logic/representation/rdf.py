@@ -2,17 +2,17 @@ __author__ = 'frieder'
 
 from logic.DataFlowControl import DataController
 from rdflib import Graph, URIRef, Literal, BNode, Namespace, RDF
-
+import saopy
 
 class rdf:
     def process(self, data, params):
         store = Graph()
-        store.bind("dc", "http://http://purl.org/dc/elements/1.1/")
-        store.bind("ccsr", "http://ccsr.ac.uk/rwdata/0.1/")
-        CCSR = Namespace("http://ccsr.ac.uk/rwdata/0.1/")
+
+        #store.bind("dc", "http://http://purl.org/dc/elements/1.1/")
+        #store.bind("ccsr", "http://ccsr.ac.uk/rwdata/0.1/")
+        CCSR = Namespace("#")
         self.dc = DataController()
 
-        donna = CCSR["bieber"]
         #store.add((donna,RDF.type,CCSR["beer"]))
         #print self.dc.preprocData
         #print self.dc.dimrecprocData
@@ -20,11 +20,11 @@ class rdf:
         #print self.dc.abstractionData
         #print self.dc.getCurrentLabels()
         for i in params:
-            store.add((CCSR[params[i]], RDF.type, CCSR["SensorAbstraction"]))
+            store.add((CCSR[params[i]], RDF.type, CCSR["Sensor"]))
         import utils.rdfVisualizer
         v = utils.rdfVisualizer.Visualizer(store)
         k = v.graph2dot(True)
-        k.write_png("s.png", prog='dot')
+        k.write_png("state.png", prog='dot')
         return store
 
 
