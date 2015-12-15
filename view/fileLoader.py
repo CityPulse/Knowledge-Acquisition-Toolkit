@@ -17,6 +17,7 @@ import pandas
 import numpy as np
 
 import logic.DataFlowControl
+#newversion
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
