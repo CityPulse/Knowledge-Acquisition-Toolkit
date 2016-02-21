@@ -1,5 +1,4 @@
-# KAT
-KAT - Knowledge Acquisition Toolkit
+# KAT (Knowledge Acquisition Toolkit)
 
 To run KAT go to view folder and run KATView.py
 
