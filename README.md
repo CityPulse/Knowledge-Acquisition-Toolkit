@@ -50,5 +50,5 @@ To find relationships between different groups produced in the previous section,
 
 ![alt tag](http://kat.ee.surrey.ac.uk/graph/KAT_sc6.PNG)
 
-Contributers
+#Contributers
 KAT was developed as part of the EU project CityPulse. The consortium member University of Surrey provided the main contributions for this component.
