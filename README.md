@@ -1,6 +1,6 @@
 # KAT (Knowledge Acquisition Toolkit)
 
-<b> KAT1.0 will not be updated- please refer to KAT2.0 GitHub for further updates- </b>
+<b> KAT1.0 will not be updated anymore- please refer to KAT2.0 GitHub for further updates- </b>
 https://github.com/CityPulse/Knowledge-Acquisition-Toolkit-2.0
 
 To run KAT go to view folder and run KATView.py
